@@ -1,7 +1,7 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contacts/slice';
+import { addContact } from 'redux/operations';
 import { getContacts } from 'redux/selectors';
 import Notiflix from 'notiflix';
 import * as Yup from 'yup';
@@ -18,10 +18,10 @@ const schema = Yup.object().shape({
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
-  const savedContacts = useSelector(getContacts);
+  const { items } = useSelector(getContacts);
 
   const handleSubmit = (values, { resetForm }) => {
-    const isInContacts = savedContacts.find(
+    const isInContacts = items.find(
       ({ name }) => name.toLowerCase() === values.name.toLowerCase()
     );
     if (isInContacts) {
@@ -33,9 +33,10 @@ export const ContactForm = () => {
     }
     dispatch(
       addContact({
-        id: nanoid(),
+        createdAt: new Date(),
         name: values.name,
-        number: values.number,
+        phone: values.number,
+        id: nanoid(),
       })
     );
     resetForm();
