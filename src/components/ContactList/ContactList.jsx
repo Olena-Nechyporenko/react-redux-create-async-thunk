@@ -1,25 +1,14 @@
-import { useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteContact } from 'redux/operations';
-import { getContacts } from 'redux/selectors';
-import { getFilter } from 'redux/selectors';
+import { selectFilteredContacts } from 'redux/selectors';
+import { selectFilter } from 'redux/selectors';
 import css from './ContactList.module.css';
 
 export function ContactList() {
-  const { items } = useSelector(getContacts);
-  const savedFilter = useSelector(getFilter);
+  const filteredContacts = useSelector(selectFilteredContacts);
+  const savedFilter = useSelector(selectFilter);
   const dispatch = useDispatch();
 
-  const getFilteredContacts = useMemo(
-    () => () => {
-      const normalizedFilter = savedFilter.toLowerCase();
-      return items.filter(({ name }) =>
-        name.toLowerCase().includes(normalizedFilter)
-      );
-    },
-    [items, savedFilter]
-  );
-  const filteredContacts = getFilteredContacts();
   return (
     <ul className={css.contactList}>
       {filteredContacts.map(({ id, name, phone }) => (

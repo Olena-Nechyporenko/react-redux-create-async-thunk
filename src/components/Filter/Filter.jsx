@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { setFilter } from 'redux/contacts/slice';
-import { getFilter } from 'redux/selectors';
+import { selectFilter } from 'redux/selectors';
 import css from './Filter.module.css';
 export function Filter() {
   const dispatch = useDispatch();
-  const savedFilter = useSelector(getFilter);
+  const savedFilter = useSelector(selectFilter);
 
   function filterContacts(evt) {
     const valueFilter = evt.target.value.trim();

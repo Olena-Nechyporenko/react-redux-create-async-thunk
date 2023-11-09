@@ -50,7 +50,7 @@ const contactsSlice = createSlice({
       state.contacts.isLoading = false;
       state.contacts.error = null;
       state.contacts.items = state.contacts.items.filter(
-        ({ id }) => id !== action.payload
+        ({ id }) => id !== action.payload.id
       );
     },
   },
