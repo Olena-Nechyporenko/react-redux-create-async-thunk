@@ -9,6 +9,7 @@ import { ThreeDots } from 'react-loader-spinner';
 
 const spinnerStyle = {
   padding: '5px 65px',
+  position: 'absolute',
 };
 
 //   APP

@@ -8,7 +8,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-image: linear-gradient(145deg, #fae6fc, #e1c3ff, #fffec3, #c7c3ff);
-  height: 100vh;
 }
 
 code {
@@ -18,6 +17,9 @@ code {
 
 .container {
   padding-left: 20px;
+  padding-bottom: 30px;
+  width: 500px;
+  height: 800px;
 }
 .formTitle {
   font-size: 40px;
